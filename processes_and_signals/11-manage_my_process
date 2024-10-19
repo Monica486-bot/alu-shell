@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #manage
-if [[ "$N" == "1" ]]; then
+if [[ "$#" == "1" ]]; then
   if [[ "$1" == "start" ]]; then
     ./manage_my_process &
     echo "$!" > /var/run/my_process.pid
@@ -8,25 +8,21 @@ if [[ "$N" == "1" ]]; then
   elif [[ "$1" == "stop" ]]; then
     if test -f "/var/run/my_process.pid"; then
       kill "$(cat /var/run/my_process.pid)"
-    f1
+    fi
     rm /var/run/my_process.pid
     echo "manage_my_process stopped"
   elif [[ "$1" == "restart" ]]; then
-    " stop program
+    # stop program
     if test -f "/var/run/my_process.pid"; then
       kill "$(cat /var/run/my_process.pid)"
-    f1
-    = start program
+    fi
+    # start program
     ./manage_my_process &
     echo "$!" > /var/run/my_process.pid
     echo "manage_my_process restarted"
   else
     echo "usage: manage_my_process {start|stop|retart}"
-  f1
+  fi
  else
     echo "usage: manage_my_process {start|stop|restart}"
-  f1
-else
-  echo "usage: manage_my_process {start|stop|retart}"
-f1
-
+ fi
